@@ -6,7 +6,7 @@ class Linq:
         self.data = data
 
     def select(self, condition: Callable):
-        pass
+        return Linq(list(filter(condition, self.data)))
 
     def __len__(self):
         return len(self.data)
