@@ -14,9 +14,17 @@ class Linq:
     def order_by(self, condition: Callable):
         return Linq(list(sorted(self.data, key=condition)))
 
+    def distinct(self):
+        return Linq(set(self.data))
+
+    def any(self, condition: Callable) -> bool:
+        return False if self.where(condition).to_list() == [] else True
+
     def __len__(self):
         return len(self.data)
 
     def to_list(self):
         return self.data
+
+
 

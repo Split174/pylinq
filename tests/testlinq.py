@@ -32,3 +32,12 @@ class TestLinq(unittest.TestCase):
     def test_select_age(self):
         age_list = Linq(self.test_people).select(lambda x: x.age).to_list()
         self.assertEqual(age_list, [23, 21, 45, 17, 33])
+
+    def test_any_firstname_seva_false(self):
+        real = Linq(self.test_people).any(lambda x: x.firstname == "Seva")
+        self.assertEqual(real, False)
+
+    def test_any_firstname_jirok_true(self):
+        real = Linq(self.test_people).any(lambda x: x.firstname == "Jirok")
+        self.assertEqual(real, True)
+
