@@ -21,6 +21,11 @@ class Linq:
     def reverse(self):
         return Linq(self.data[::-1])
 
+    def all(self, condition: Callable = lambda x: x) -> bool:
+        current_len = len(self)
+        number_condition = len(list(filter(condition, self.data)))
+        return current_len == number_condition
+
     def any(self, condition: Callable = lambda x: x) -> bool:
         return False if self.where(condition).to_list() == [] else True
 

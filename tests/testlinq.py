@@ -44,3 +44,11 @@ class TestLinq(unittest.TestCase):
     def test_reverse_and_select_age(self):
         age_list = Linq(self.test_people).select(lambda x: x.age).reverse().to_list()
         self.assertEqual(age_list, [33, 17, 45, 21, 23])
+
+    def test_all_age_gt_15_true(self):
+        real = Linq(self.test_people).all(lambda x: x.age > 15)
+        self.assertEqual(real, True)
+
+    def test_all_name_equal_sergey_false(self):
+        real = Linq(self.test_people).all(lambda x: x.firstname == "Sergey")
+        self.assertEqual(real, False)
