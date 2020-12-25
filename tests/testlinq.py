@@ -65,3 +65,8 @@ class TestLinq(unittest.TestCase):
     def test_count_age_gt_25_2(self):
         real = Linq(self.test_people).count(lambda x: x.age > 25)
         self.assertEqual(real, 2)
+
+    def test_distinctby_firstname_2(self):
+        real = Linq(self.test_people).distinct_by(lambda x: x.firstname)
+        self.assertEqual(len(real), 4)
+

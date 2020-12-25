@@ -7,7 +7,7 @@ class Linq:
         self.data = [d for d in data]
 
     def select(self, condition: Callable = lambda x: x):
-        return Linq([condition(item) for item in self.data])
+        return Linq(Linq._select(self.data, condition))
 
     def where(self, condition: Callable = lambda x: x):
         return Linq(filter(condition, self.data))
@@ -20,6 +20,13 @@ class Linq:
 
     def distinct(self):
         return Linq(set(self.data))
+
+    def distinct_by(self, condition: Callable = lambda x: x):
+        new_data = []
+        for d in self.data:
+            if condition(d) not in Linq._select(new_data, condition):
+                new_data.append(d)
+        return Linq(new_data)
 
     def reverse(self):
         return Linq(self.data[::-1])
@@ -37,6 +44,10 @@ class Linq:
 
     def __len__(self):
         return len(self.data)
+
+    @staticmethod
+    def _select(data, condition: Callable = lambda x: x):
+        return [condition(item) for item in data]
 
     def to_list(self):
         return self.data

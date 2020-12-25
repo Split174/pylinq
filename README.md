@@ -1,3 +1,4 @@
+# Linq
 ```
 Select(+)
 Where(+)
@@ -36,4 +37,12 @@ ElementAt
 ElementAtOrDefault
 Last
 LastOrDefault
+```
+
+# More Linq
+[original](https://github.com/morelinq/MoreLINQ)
+```
+DistinctBy(+)
+MaxBy
+MinBy
 ```
