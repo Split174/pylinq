@@ -70,3 +70,19 @@ class TestLinq(unittest.TestCase):
         real = Linq(self.test_people).distinct_by(lambda x: x.firstname)
         self.assertEqual(len(real), 4)
 
+    def test_contains_sergey_popov_true(self):
+        real = Linq(self.test_people).contains(People("Sergey", "Popov", 23))
+        self.assertEqual(real, True)
+
+    def test_contains_3_false(self):
+        real = Linq(self.test_people).contains(3)
+        self.assertEqual(real, False)
+
+    def test_first_age_gt_25(self):
+        real = Linq(self.test_people).first(lambda x: x.age >= 25).to_list()
+        self.assertEqual(real, [People("Jirok", "Kiv", 45)])
+
+    def test_last_firstname_eq_sergey(self):
+        real = Linq(self.test_people).last(lambda x: x.firstname == "Sergey").to_list()
+        self.assertEqual(real, [People("Sergey", "OrkJump", 17)])
+

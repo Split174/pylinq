@@ -13,7 +13,7 @@ GroupJoin
 Reverse(+)
 All(+)
 Any(+)
-Contains
+Contains(+)
 Distinct(+)
 Except
 Union
@@ -29,14 +29,12 @@ TakeWhile
 SkipWhile
 Concat
 Zip
-First
-FirstOrDefault
+FirstOrDefault/First(+)
 Single
 SingleOrDefault
 ElementAt
 ElementAtOrDefault
-Last
-LastOrDefault
+LastOrDefault/Last(+)
 ```
 
 # More Linq

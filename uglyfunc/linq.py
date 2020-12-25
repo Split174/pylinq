@@ -31,6 +31,9 @@ class Linq:
     def reverse(self):
         return Linq(self.data[::-1])
 
+    def contains(self, item) -> bool:
+        return item in self
+
     def all(self, condition: Callable = lambda x: x) -> bool:
         current_len = len(self)
         number_condition = len(self.where(condition))
@@ -42,8 +45,21 @@ class Linq:
     def count(self, condition: Callable = lambda x: x) -> int:
         return len(self.where(condition))
 
+    def first(self, condition: Callable = lambda x: x, default=None):
+        if len(self) >= 1:
+            for d in self.data:
+                if condition(d):
+                    return Linq([d])
+        return default
+
+    def last(self, condition: Callable = lambda x: x, default=None):
+        return self.reverse().first(condition, default)
+
     def __len__(self):
         return len(self.data)
+
+    def __contains__(self, item):
+        return item in self.data
 
     @staticmethod
     def _select(data, condition: Callable = lambda x: x):
