@@ -15,6 +15,9 @@ class Linq:
     def order_by(self, condition: Callable = lambda x: x):
         return Linq(sorted(self.data, key=condition))
 
+    def order_by_descending(self, condition: Callable = lambda x: x):
+        return Linq(sorted(self.data, key=condition, reverse=True))
+
     def distinct(self):
         return Linq(set(self.data))
 
@@ -23,11 +26,14 @@ class Linq:
 
     def all(self, condition: Callable = lambda x: x) -> bool:
         current_len = len(self)
-        number_condition = len(list(filter(condition, self.data)))
+        number_condition = len(self.where(condition))
         return current_len == number_condition
 
     def any(self, condition: Callable = lambda x: x) -> bool:
-        return False if self.where(condition).to_list() == [] else True
+        return any(condition(d) for d in self.data)
+
+    def count(self, condition: Callable = lambda x: x) -> int:
+        return len(self.where(condition))
 
     def __len__(self):
         return len(self.data)

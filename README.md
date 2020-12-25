@@ -2,7 +2,7 @@
 Select(+)
 Where(+)
 OrderBy(+)
-OrderByDescending
+OrderByDescending(+)
 ThenBy
 ThenByDescending
 Join
@@ -10,14 +10,14 @@ GroupBy
 ToLookup
 GroupJoin
 Reverse(+)
-All
+All(+)
 Any(+)
 Contains
 Distinct(+)
 Except
 Union
 Intersect
-Count
+Count(+)
 Sum
 Average
 Min

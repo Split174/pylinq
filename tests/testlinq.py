@@ -29,6 +29,11 @@ class TestLinq(unittest.TestCase):
         real = Linq(self.test_people).order_by(lambda x: x.age).to_list()
         self.assertEqual(real, expect)
 
+    def test_order_by_desc_age(self):
+        expect = list(sorted(self.test_people, key=lambda x: x.age, reverse=True))
+        real = Linq(self.test_people).order_by_descending(lambda x: x.age).to_list()
+        self.assertEqual(real, expect)
+
     def test_select_age(self):
         age_list = Linq(self.test_people).select(lambda x: x.age).to_list()
         self.assertEqual(age_list, [23, 21, 45, 17, 33])
@@ -52,3 +57,11 @@ class TestLinq(unittest.TestCase):
     def test_all_name_equal_sergey_false(self):
         real = Linq(self.test_people).all(lambda x: x.firstname == "Sergey")
         self.assertEqual(real, False)
+
+    def test_count_without_cond_5(self):
+        real = Linq(self.test_people).count()
+        self.assertEqual(real, 5)
+
+    def test_count_age_gt_25_2(self):
+        real = Linq(self.test_people).count(lambda x: x.age > 25)
+        self.assertEqual(real, 2)
