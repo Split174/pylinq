@@ -55,6 +55,20 @@ class Linq:
     def last(self, condition: Callable = lambda x: x, default=None):
         return self.reverse().first(condition, default)
 
+    def element_at(self, index):
+        return self[index]
+
+    def skip(self, index):
+        return self[index:]
+
+    def take(self, index):
+        return self[:index]
+
+    def __getitem__(self, key):
+        if isinstance(key, slice):
+            return Linq(self.data[key])
+        return Linq([self.data[key]])
+
     def __len__(self):
         return len(self.data)
 

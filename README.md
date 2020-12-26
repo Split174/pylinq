@@ -23,8 +23,8 @@ Sum
 Average
 Min
 Max
-Take
-Skip
+Take(+)
+Skip(+)
 TakeWhile
 SkipWhile
 Concat
@@ -32,8 +32,7 @@ Zip
 FirstOrDefault/First(+)
 Single
 SingleOrDefault
-ElementAt
-ElementAtOrDefault
+ElementAtOrDefault/ElementAt(+)
 LastOrDefault/Last(+)
 ```
 

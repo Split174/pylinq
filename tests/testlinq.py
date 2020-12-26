@@ -86,3 +86,28 @@ class TestLinq(unittest.TestCase):
         real = Linq(self.test_people).last(lambda x: x.firstname == "Sergey").to_list()
         self.assertEqual(real, [People("Sergey", "OrkJump", 17)])
 
+    def test_element_at_3(self):
+        real = Linq(self.test_people).element_at(3).to_list()
+        self.assertEqual(real, [People("Sergey", "OrkJump", 17)])
+
+    def test_skip_3(self):
+        real = Linq(self.test_people).skip(3).to_list()
+        expect = [People("Sergey", "OrkJump", 17),
+                  People("OddHub", "Doter", 33)]
+        self.assertEqual(real, expect)
+
+    def test_skip_7(self):
+        real = Linq(self.test_people).skip(7).to_list()
+        self.assertEqual(real, [])
+
+    def test_take_2(self):
+        real = Linq(self.test_people).take(2).to_list()
+        expect = [People("Sergey", "Popov", 23),
+                  People("Anton", "Vivaldi", 21)]
+        self.assertEqual(real, expect)
+
+    def test_take_7(self):
+        real = Linq(self.test_people).take(7).to_list()
+        self.assertEqual(real, self.test_people)
+
+
