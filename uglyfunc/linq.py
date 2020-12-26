@@ -64,6 +64,19 @@ class Linq:
     def take(self, index):
         return self[:index]
 
+    def sum_by(self, condition: Callable = lambda x: x):
+        return sum(Linq._select(self.data, condition))
+
+    def min_by(self, condition: Callable = lambda x: x):
+        return min(Linq._select(self.data, condition))
+
+    def max_by(self, condition: Callable = lambda x: x):
+        return max(Linq._select(self.data, condition))
+
+    def average_by(self, condition: Callable = lambda x: x):
+        sum_ = self.sum_by(condition)
+        return sum_ / len(self)
+
     def __getitem__(self, key):
         if isinstance(key, slice):
             return Linq(self.data[key])

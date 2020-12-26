@@ -110,4 +110,22 @@ class TestLinq(unittest.TestCase):
         real = Linq(self.test_people).take(7).to_list()
         self.assertEqual(real, self.test_people)
 
+    def test_sum_by(self):
+        real = Linq([1, 2, 3]).sum_by()
+        self.assertEqual(real, 6)
 
+    def test_sum_by_age(self):
+        real = Linq(self.test_people).sum_by(lambda x: x.age)
+        self.assertEqual(real, 139)
+
+    def test_min_by_age(self):
+        real = Linq(self.test_people).min_by(lambda x: x.age)
+        self.assertEqual(real, 17)
+
+    def test_max_by_age(self):
+        real = Linq(self.test_people).max_by(lambda x: x.age)
+        self.assertEqual(real, 45)
+
+    def test_avg_by_age(self):
+        real = Linq(self.test_people).average_by(lambda x: x.age)
+        self.assertEqual(real, 27.8)
